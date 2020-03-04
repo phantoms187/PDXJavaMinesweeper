@@ -1,5 +1,6 @@
 package edu.pdx.cs410J.dwd2;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static edu.pdx.cs410J.dwd2.Kata.parseBox;
@@ -13,6 +14,37 @@ public class KataTest
     new Kata();
   }
 
+  @Test
+  public void twoSquareNoBombs() {
+    char[][] box = {{'.', '.'}};
+    char[][] answer = {{'0', '0'}};
+
+    char[][] parsedBox = parseBox(box);
+
+    assertArrayEquals(parsedBox, answer);
+  }
+
+  @Test
+  public void oneSquareNoBomb() {
+    char[][] box = {{'.'}};
+    char[][] answer = {{'0'}};
+
+    char[][] parsedBox = parseBox(box);
+
+    assertArrayEquals(parsedBox, answer);
+  }
+
+  @Test
+  public void oneBomb() {
+    char[][] box = {{'*'}};
+    char[][] answer = {{'*'}};
+
+    char[][] parsedBox = parseBox(box);
+
+    assertArrayEquals(parsedBox, answer);
+  }
+
+  @Ignore
   @Test
   public void exampleFromKata() {
     char[][] box = {{'*', '.', '.', '.'},

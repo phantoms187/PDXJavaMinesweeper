@@ -23,7 +23,19 @@ public class Kata {
   }
 
   public static char[][] parseBox(char[][] box) {
-    char[][] answer = null;
+    char[][] answer = new char[box.length][box[0].length];
+    for (int i = 0; i < box.length; i++) {
+      for (int j = 0; j < box[i].length; j++) {
+        char answerChar;
+        if (box[i][j] == '.') {
+          answerChar = '0';
+        }
+        else {
+          answerChar = '*';
+        }
+        answer[i][j] = answerChar;
+      }
+    }
 
     return answer;
   }
