@@ -22,22 +22,52 @@ public class Kata {
     return emptyGrid;
   }
 
+
   public static char[][] parseBox(char[][] box) {
     char[][] answer = new char[box.length][box[0].length];
     for (int i = 0; i < box.length; i++) {
       for (int j = 0; j < box[i].length; j++) {
         char answerChar;
-        if (box[i][j] == '.') {
-          answerChar = '0';
-        }
-        else {
-          answerChar = '*';
-        }
+        answerChar = getAnswerChar(box, i, j);
         answer[i][j] = answerChar;
       }
     }
 
     return answer;
+  }
+
+  public static char checkLeftRight(char[][] box, int row, int column){
+    int count = 0;
+
+    int [] iter = {-1, 0, 1};
+    for (int i : iter)
+    {
+      for(int j : iter)
+      {
+        if(cellContainsBomb(box, row+i, column+j)){
+          count++;
+        }
+      }
+    }
+    return Character.forDigit(count, 10);
+  }
+
+  public static boolean cellContainsBomb(char[][] box, int row, int column){
+    if(column < 0 || column >= box[0].length || row < 0 || row >= box.length) {
+        return false;
+    }
+    return box[row][column] == '*';
+  }
+
+  private static char getAnswerChar(char[][] box, int i, int j) {
+    char answerChar;
+    if (box[i][j] == '.') {
+      answerChar = checkLeftRight(box, i, j);
+    }
+    else {
+      answerChar = '*';
+    }
+    return answerChar;
   }
 
 }

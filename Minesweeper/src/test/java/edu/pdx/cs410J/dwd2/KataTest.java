@@ -15,6 +15,27 @@ public class KataTest
   }
 
   @Test
+  public void twoSquaresOneBomb() {
+    char[][] box = {{'.', '*'}};
+    char[][] answer = {{'1', '*'}};
+
+    char[][] parsedBox = parseBox(box);
+
+    assertArrayEquals(answer, parsedBox);
+  }
+
+  @Test
+  public void twoSquareOneBomb() {
+    char[][] box = {{'*', '.'}};
+    char[][] answer = {{'*', '1'}};
+
+    char[][] parsedBox = parseBox(box);
+
+    assertArrayEquals(parsedBox, answer);
+  }
+
+
+  @Test
   public void twoSquareNoBombs() {
     char[][] box = {{'.', '.'}};
     char[][] answer = {{'0', '0'}};
@@ -44,7 +65,7 @@ public class KataTest
     assertArrayEquals(parsedBox, answer);
   }
 
-  @Ignore
+
   @Test
   public void exampleFromKata() {
     char[][] box = {{'*', '.', '.', '.'},
